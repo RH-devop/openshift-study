@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-study
+  labels:
+    app: nginx-study
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-study
+  template:
+    metadata:
+      labels:
+        app: nginx-study
+    spec:
+      containers:
+        - name: nginx-unprivileged
+          image: nginxinc/nginx-unprivileged
+          ports:
+            - containerPort: 8080
